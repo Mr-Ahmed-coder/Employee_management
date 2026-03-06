@@ -15,13 +15,14 @@ const app = express();
 // Middleware
 
 
+
 app.use(cors({
     origin: function(origin, callback) {
         const allowedOrigins = [
             'http://localhost:5173',
-            'http://localhost:5174', 
+            'http://localhost:5174',
             'http://localhost:5175',
-            process.env.CLIENT_URL  // your Render frontend URL
+            process.env.CLIENT_URL
         ];
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
@@ -31,7 +32,6 @@ app.use(cors({
     },
     credentials: true,
 }));
-
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
