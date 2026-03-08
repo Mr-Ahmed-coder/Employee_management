@@ -13,6 +13,7 @@ import {
     FiCalendar,
     FiFileText,
     FiChevronDown,
+    FiUser,
 } from 'react-icons/fi';
 
 const Navbar = () => {
@@ -79,6 +80,7 @@ const Navbar = () => {
                 },
             ]
             : []),
+        { to: '/profile', label: 'My Profile', icon: <FiUser /> },
         { to: '/reset-password', label: 'Password', icon: <FiLock /> },
     ];
 

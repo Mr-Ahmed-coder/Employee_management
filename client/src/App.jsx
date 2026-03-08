@@ -15,6 +15,7 @@ import EmployeeList from './pages/EmployeeList';
 import AddEmployee from './pages/AddEmployee';
 import EditEmployee from './pages/EditEmployee';
 import ViewEmployee from './pages/ViewEmployee';
+import MyProfile from './pages/MyProfile';
 import DepartmentList from './pages/DepartmentList';
 import DepartmentDetail from './pages/DepartmentDetail';
 import MarkAttendance from './pages/MarkAttendance';
@@ -96,6 +97,15 @@ function App() {
                                 element={
                                     <ProtectedRoute roles={['Admin', 'HR', 'Manager']}>
                                         <ViewEmployee />
+                                    </ProtectedRoute>
+                                }
+                            />
+
+                            <Route
+                                path="/profile"
+                                element={
+                                    <ProtectedRoute>
+                                        <MyProfile />
                                     </ProtectedRoute>
                                 }
                             />

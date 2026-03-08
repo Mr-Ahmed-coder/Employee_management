@@ -234,6 +234,32 @@ const getEmployeeStats = async (req, res) => {
     }
 };
 
+// @desc    Get current employee's profile
+// @route   GET /api/employees/me
+// @access  Private
+const getMyEmployee = async (req, res) => {
+    try {
+        const employee = await Employee.findOne({ email: req.user.email });
+
+        if (!employee) {
+            return res.status(404).json({
+                success: false,
+                message: 'Employee profile not found for your account',
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: employee,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
 module.exports = {
     createEmployee,
     getEmployees,
@@ -241,4 +267,5 @@ module.exports = {
     updateEmployee,
     deleteEmployee,
     getEmployeeStats,
+    getMyEmployee,
 };

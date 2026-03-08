@@ -7,6 +7,7 @@ const {
     updateEmployee,
     deleteEmployee,
     getEmployeeStats,
+    getMyEmployee,
 } = require('../controllers/employeeController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -15,6 +16,9 @@ router.use(protect);
 
 // Stats route (must be before /:id to avoid conflict)
 router.get('/stats/overview', authorize('Admin', 'HR', 'Manager'), getEmployeeStats);
+
+// Get current user's employee profile
+router.get('/me', getMyEmployee);
 
 // CRUD routes
 router.route('/')

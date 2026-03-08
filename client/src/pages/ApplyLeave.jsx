@@ -33,12 +33,10 @@ const ApplyLeave = () => {
                     setEmployees(res.data.data);
                 } else {
                     // Employee: find own employee record
-                    const res = await axios.get('/employees', { params: { search: user?.email } });
-                    if (res.data.data.length > 0) {
-                        const emp = res.data.data[0];
-                        setEmployees([emp]);
-                        setFormData((prev) => ({ ...prev, employee: emp._id }));
-                    }
+                    const res = await axios.get('/employees/me');
+                    const emp = res.data.data;
+                    setEmployees([emp]);
+                    setFormData((prev) => ({ ...prev, employee: emp._id }));
                 }
             } catch (error) {
                 toast.error('Failed to load employees');

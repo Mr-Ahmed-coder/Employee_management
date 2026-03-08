@@ -37,20 +37,20 @@ const Login = () => {
                 <div className="auth-left">
                     <div className="auth-branding">
                         <div className="brand-logo">👥</div>
-                        <h1>Employee Management System</h1>
-                        <p>Streamline your workforce management with our comprehensive solution</p>
+                        <h1>System shaqaalaha lagu talo galay</h1>
+                        <p>Si Fudud ugu maare shaqaalaha shirkadaaada</p>
                         <div className="auth-features">
                             <div className="feature-item">
                                 <span className="feature-icon">🔒</span>
-                                <span>Secure Authentication</span>
+                                <span>Security aad fiican uleh</span>
                             </div>
                             <div className="feature-item">
                                 <span className="feature-icon">👤</span>
-                                <span>Role-Based Access</span>
+                                <span>Kala madax banaan maamulaha Iyo shaqaalaha </span>
                             </div>
                             <div className="feature-item">
                                 <span className="feature-icon">📊</span>
-                                <span>Real-time Dashboard</span>
+                                <span>Dashboard Modern ah leh</span>
                             </div>
                             <div className="feature-item">
                                 <span className="feature-icon">📋</span>
@@ -63,8 +63,8 @@ const Login = () => {
                 <div className="auth-right">
                     <div className="auth-form-wrapper">
                         <div className="auth-header">
-                            <h2>Welcome Back</h2>
-                            <p>Sign in to your account to continue</p>
+                            <h2>Soo dhawoow</h2>
+                            <p>Account kaaga geli si aad gudaha hore u sii gashid</p>
                         </div>
 
                         <form onSubmit={handleSubmit} className="auth-form">

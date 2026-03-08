@@ -172,7 +172,7 @@ const Dashboard = () => {
                             <p>{card.description}</p>
                         </div>
                         {card.disabled && (
-                            <span className="coming-soon">Coming Soon</span>
+                            <span className="coming-soon">Shaqa ku socota</span>
                         )}
                     </Link>
                 ))}
