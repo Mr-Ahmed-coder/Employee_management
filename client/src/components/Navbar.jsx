@@ -11,6 +11,8 @@ import {
     FiLock,
     FiBriefcase,
     FiCalendar,
+    FiFileText,
+    FiChevronDown,
 } from 'react-icons/fi';
 
 const Navbar = () => {
@@ -30,25 +32,54 @@ const Navbar = () => {
     const navLinks = [
         { to: '/dashboard', label: 'Dashboard', icon: <FiHome /> },
         ...(user?.role === 'Admin' || user?.role === 'HR' || user?.role === 'Manager'
-            ? [{ to: '/employees', label: 'Employees', icon: <FiBriefcase /> }]
-            : []),
-        ...(user?.role === 'Admin' || user?.role === 'HR' || user?.role === 'Manager'
-            ? [{ to: '/departments', label: 'Departments', icon: <FiBriefcase /> }]
-            : []),
-        ...(user?.role === 'Admin' || user?.role === 'HR'
-            ? [{ to: '/users', label: 'Users', icon: <FiUsers /> }]
-            : []),
-        ...(user?.role === 'Admin'
-            ? [{ to: '/register', label: 'Register User', icon: <FiUserPlus /> }]
+            ? [
+                {
+                    label: 'Organization',
+                    icon: <FiBriefcase />,
+                    subLinks: [
+                        { to: '/employees', label: 'Employees' },
+                        { to: '/departments', label: 'Departments' },
+                    ],
+                },
+            ]
             : []),
         ...(user?.role === 'Admin' || user?.role === 'HR' || user?.role === 'Manager'
             ? [
-                { to: '/attendance/mark', label: 'Mark Attendance', icon: <FiCalendar /> },
-                { to: '/attendance/records', label: 'Attendance Records', icon: <FiCalendar /> },
-                { to: '/attendance/report', label: 'Monthly Report', icon: <FiCalendar /> },
+                {
+                    label: 'Attendance',
+                    icon: <FiCalendar />,
+                    subLinks: [
+                        { to: '/attendance/mark', label: 'Mark Attendance' },
+                        { to: '/attendance/records', label: 'Attendance Records' },
+                        { to: '/attendance/report', label: 'Monthly Report' },
+                    ],
+                },
             ]
             : [{ to: '/attendance/records', label: 'My Attendance', icon: <FiCalendar /> }]),
-        { to: '/reset-password', label: 'Change Password', icon: <FiLock /> },
+        {
+            label: 'Leave',
+            icon: <FiFileText />,
+            subLinks: [
+                { to: '/leaves/apply', label: 'Apply Leave' },
+                { to: '/leaves/history', label: 'Leave History' },
+                ...(user?.role === 'Admin' || user?.role === 'HR' || user?.role === 'Manager'
+                    ? [{ to: '/leaves/requests', label: 'Leave Requests' }]
+                    : []),
+            ],
+        },
+        ...(user?.role === 'Admin' || user?.role === 'HR'
+            ? [
+                {
+                    label: 'Administration',
+                    icon: <FiUsers />,
+                    subLinks: [
+                        { to: '/users', label: 'Manage Users' },
+                        ...(user?.role === 'Admin' ? [{ to: '/register', label: 'Register User' }] : []),
+                    ],
+                },
+            ]
+            : []),
+        { to: '/reset-password', label: 'Password', icon: <FiLock /> },
     ];
 
     const isActive = (path) => location.pathname === path;
@@ -71,16 +102,38 @@ const Navbar = () => {
 
                 <div className={`navbar-menu ${menuOpen ? 'active' : ''}`}>
                     <div className="nav-links">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.to}
-                                to={link.to}
-                                className={`nav-link ${isActive(link.to) ? 'active' : ''}`}
-                                onClick={() => setMenuOpen(false)}
-                            >
-                                {link.icon}
-                                <span>{link.label}</span>
-                            </Link>
+                        {navLinks.map((link, index) => (
+                            link.subLinks ? (
+                                <div key={index} className="nav-dropdown">
+                                    <button className="nav-link nav-dropdown-toggle">
+                                        {link.icon}
+                                        <span>{link.label}</span>
+                                        <FiChevronDown className="dropdown-arrow" />
+                                    </button>
+                                    <div className="nav-dropdown-menu">
+                                        {link.subLinks.map((subLink) => (
+                                            <Link
+                                                key={subLink.to}
+                                                to={subLink.to}
+                                                className={`nav-dropdown-item ${isActive(subLink.to) ? 'active' : ''}`}
+                                                onClick={() => setMenuOpen(false)}
+                                            >
+                                                {subLink.label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : (
+                                <Link
+                                    key={link.to}
+                                    to={link.to}
+                                    className={`nav-link ${isActive(link.to) ? 'active' : ''}`}
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {link.icon}
+                                    <span>{link.label}</span>
+                                </Link>
+                            )
                         ))}
                     </div>
 

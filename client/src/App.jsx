@@ -21,6 +21,11 @@ import MarkAttendance from './pages/MarkAttendance';
 import AttendanceRecords from './pages/AttendanceRecords';
 import MonthlyReport from './pages/MonthlyReport';
 
+// Leave Management
+import ApplyLeave from './pages/ApplyLeave';
+import LeaveHistory from './pages/LeaveHistory';
+import LeaveRequests from './pages/LeaveRequests';
+
 function App() {
     return (
         <AuthProvider>
@@ -143,6 +148,32 @@ function App() {
                                 element={
                                     <ProtectedRoute roles={['Admin', 'HR', 'Manager']}>
                                         <MonthlyReport />
+                                    </ProtectedRoute>
+                                }
+                            />
+
+                            {/* Leave Management routes */}
+                            <Route
+                                path="/leaves/apply"
+                                element={
+                                    <ProtectedRoute>
+                                        <ApplyLeave />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/leaves/history"
+                                element={
+                                    <ProtectedRoute>
+                                        <LeaveHistory />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/leaves/requests"
+                                element={
+                                    <ProtectedRoute roles={['Admin', 'HR', 'Manager']}>
+                                        <LeaveRequests />
                                     </ProtectedRoute>
                                 }
                             />
