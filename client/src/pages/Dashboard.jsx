@@ -57,22 +57,22 @@ const Dashboard = () => {
             link: '/attendance/mark',
             color: '#ec4899',
         },
-        {
-            title: 'Leave Requests',
-            description: 'Manage leave applications',
-            icon: <FiClipboard />,
-            link: '#',
-            color: '#8b5cf6',
-            disabled: true,
-        },
-        {
-            title: 'Reports',
-            description: 'View system reports',
-            icon: <FiBarChart2 />,
-            link: '#',
-            color: '#06b6d4',
-            disabled: true,
-        },
+        // {
+        //     title: 'Leave Requests',
+        //     description: 'Manage leave applications',
+        //     icon: <FiClipboard />,
+        //     link: '#',
+        //     color: '#8b5cf6',
+        //     disabled: true,
+        // },
+        // {
+        //     title: 'Reports',
+        //     description: 'View system reports',
+        //     icon: <FiBarChart2 />,
+        //     link: '#',
+        //     color: '#06b6d4',
+        //     disabled: true,
+        // },
     ];
 
     const employeeCards = [

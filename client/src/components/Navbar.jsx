@@ -44,7 +44,7 @@ const Navbar = () => {
                 },
             ]
             : []),
-        ...(user?.role === 'Admin' || user?.role === 'HR' || user?.role === 'Manager'
+        (user?.role === 'Admin' || user?.role === 'HR' || user?.role === 'Manager'
             ? [
                 {
                     label: 'Attendance',
